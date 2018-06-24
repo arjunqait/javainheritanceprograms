@@ -1,0 +1,43 @@
+package inheritance;
+
+import java.util.Scanner;
+
+class Product
+{
+	int product_id;
+	String product_name;
+	int category_id;
+	int unit_price;
+}
+class ElectricProduct extends Product
+{
+	int voltage_range;
+	int wattage;
+	
+	public void setWattage(int wattage) {
+		this.wattage = wattage;
+	}
+	public void setPrice(int p)
+	{
+		super.unit_price=p;
+	}
+	public void display()
+	{
+		System.out.println("unit price of product is "+super.unit_price);
+		System.out.println("wattage of electrical product is "+wattage);
+	}
+}
+public class question6 {
+public static void main(String args[])
+{
+	Scanner sc=new Scanner(System.in);
+	ElectricProduct obj=new ElectricProduct();
+	System.out.println("enter price of product");
+	int p=sc.nextInt();
+	System.out.println("enter wattage of electric product");
+	int w=sc.nextInt();
+	obj.setWattage(w);
+	obj.setPrice(p);
+	obj.display();
+}
+}

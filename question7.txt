@@ -1,0 +1,43 @@
+package inheritance;
+
+import java.util.Scanner;
+
+class Book
+{
+	int book_id;
+	String title;
+	String author;
+	int price;
+}
+class Periodical extends Book
+{
+	String period;
+
+	public void setPeriod(String period) {
+		this.period = period;
+	}
+	public void setprice(int p)
+	{
+		super.price=p;
+	}
+	void display() {
+		System.out.println("periodical type is: "+this.period);
+		System.out.println("periodical price is: "+super.price);
+	}
+	
+}
+public class question7 {
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		Periodical obj=new Periodical();
+		System.out.println("enter type of periodical");
+		String type=sc.next();
+		System.out.println("enter price of periodical");
+		int p=sc.nextInt();
+		obj.setprice(p);
+		obj.setPeriod(type);
+		obj.display();
+	}
+
+}

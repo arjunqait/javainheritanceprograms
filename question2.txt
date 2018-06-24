@@ -1,0 +1,74 @@
+package inheritance;
+
+import java.util.Scanner;
+
+class Person {
+static String name;
+static int year_of_birth;
+void getdetails(String name,int year)
+{
+	Person.name=name;
+	Person.year_of_birth=year;	
+}
+void display()
+{
+	System.out.println("Name is :"+Person.name+" Year of birth "+Person.year_of_birth);
+}
+}
+class Student extends Person
+{
+	String major;
+	Student()
+	{
+	super.display();
+	}
+	void display(String major)
+	{
+		this.major=major;
+		System.out.println("desigantion is : Student "+"and major subject opted is "+this.major);
+	}
+	
+}
+class Instructor extends Person
+{
+	int salary;
+	Instructor()
+	{
+	super.display();
+	}
+	void display(int s)
+	{
+		salary=s;
+		System.out.println("designation is : Instructor "+" and salary is "+salary);
+	}
+}
+public class question2
+{
+	public static void main(String args[])
+	{
+    Scanner sc=new Scanner(System.in);
+	System.out.println("Enter person's name");
+	String name=sc.nextLine();
+	System.out.println("Enter year of birth");
+    int birth=sc.nextInt();
+    Person obj=new Person();
+    obj.getdetails(name,birth);
+    System.out.println("is the person -");
+    System.out.print("1.student 2.instructor");
+    int ch=sc.nextInt();
+    if(ch==1)
+    { 
+    System.out.println("enter major subject of student");
+    String major=sc.next();
+    Student obj1=new Student();
+    obj1.display(major);
+    }
+    if(ch==2)
+    {
+    System.out.println("enter salary of instructor");
+    int sal=sc.nextInt();
+    Instructor obj2=new Instructor();
+    obj2.display(sal);
+    }
+	}
+}

@@ -1,0 +1,42 @@
+package inheritance;
+
+import java.util.Scanner;
+
+class vehical
+{
+	int model_no;
+	int vehical_no;
+	String manufacturer;
+	String color;
+}
+class Truck extends vehical
+{
+	int load_capacity;
+
+	public void setLoad_capacity(int load_capacity) {
+		this.load_capacity = load_capacity;
+	}
+    public void setdetails(String color)
+    {
+    	super.color=color;
+    }
+    void display()
+    {
+    	System.out.println("color of truck :"+super.color);
+    System.out.println("load capacity is: "+this.load_capacity);
+    }
+}
+public class question8 {
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		Truck obj=new Truck();
+		System.out.println("enter color");
+		String color=sc.next();
+		System.out.println("enter load capacity");
+		int l=sc.nextInt();
+		obj.setLoad_capacity(l);
+		obj.setdetails(color);
+		obj.display();
+	}
+}

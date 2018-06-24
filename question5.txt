@@ -1,0 +1,44 @@
+package inheritance;
+
+import java.util.Scanner;
+
+class Employee
+{
+	int emp_id;
+	String name;
+	int project_id;
+	String designation;
+	int phone_no;
+	
+}
+class PracticeHead extends Employee
+{
+	String practiceName;
+	int no_of_customers;
+	public void setNo_of_customers(int no_of_customers) {
+		this.no_of_customers = no_of_customers;
+	}
+	public void setPhone(int n)
+	{
+		super.phone_no=n;
+	}
+	public void display()
+	{
+		System.out.println("phone number is "+super.phone_no);
+		System.out.println("no. of customer are"+no_of_customers);
+	}
+}
+public class question5 {
+public static void main(String args[])
+{
+	Scanner sc=new Scanner(System.in);
+	System.out.println("enter phone number");
+	int n=sc.nextInt();
+	System.out.println("enter number of customer");
+	int cno=sc.nextInt();
+	PracticeHead obj=new PracticeHead();
+	obj.setNo_of_customers(cno);
+	obj.setPhone(n);
+	obj.display();
+}
+}

@@ -1,0 +1,63 @@
+package inheritance;
+
+import java.util.Scanner;
+
+class Student
+{
+	int studentId;
+	String name;
+	int courseId;
+	String sex;
+	int phoneNo;
+}
+class Hosteler extends Student
+{
+	String hostelName;
+	int roomNumber;
+	public int getRoomNumber() {
+		return roomNumber;
+	}
+	public void setRoomNumber(int roomNumber) {
+		this.roomNumber = roomNumber;
+	}
+	public void setdetails(int n,int Sid,String name,int cID,String sex)
+	{
+		super.phoneNo=n;
+		super.courseId=cID;
+		super.name=name;
+		super.sex=sex;
+		super.studentId=Sid;
+	}
+	public void display()
+	{
+		System.out.println("phone number is: "+super.phoneNo);
+		System.out.println("room number is: "+roomNumber);
+				
+	}
+	
+}
+public class question4 {
+public static void main(String args[])
+{
+	Scanner sc=new Scanner(System.in);
+	System.out.println("enter student id");
+	int sid=sc.nextInt();
+	System.out.println("enter name");
+	String name=sc.next();
+	System.out.println("enter course id");
+	int cid=sc.nextInt();
+	System.out.println("enter sex");
+	String sex=sc.next();
+	System.out.println("enter phone number");
+	int ph=sc.nextInt();
+	
+	Hosteler obj=new Hosteler();
+	System.out.println("enter room number");
+	int rno=sc.nextInt();
+	obj.setdetails(ph,sid,name,cid,sex);
+	obj.setRoomNumber(rno);
+	obj.display();
+	
+}
+	
+}

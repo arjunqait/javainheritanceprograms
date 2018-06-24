@@ -1,0 +1,84 @@
+package inheritance;
+
+import java.util.Scanner;
+
+class Employee
+{
+	static String name;
+	static int salary;
+	
+	public void details(String name,int salary) {
+		Employee.salary = salary;
+		Employee.name=name;
+	}
+	
+	public void display()
+	{
+		System.out.println("employee name "+Employee.name+" employee salary "+Employee.salary);
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getSalary() {
+		return salary;
+	}
+	
+}
+class Manager extends Employee
+{
+	static String department;
+	public String getDepartment()
+	{
+		return Manager.department;
+	}
+	public void display(String d)
+	{
+    Manager.department=d;
+    System.out.println("employee name is : "+super.getName());
+    System.out.println("employee salary is : "+super.getSalary());
+    System.out.println("employee department is : "+Manager.department);
+    }
+	
+}
+class Executive extends Manager
+{
+	static String executive;
+	public void display(String e)
+	{
+		Executive.executive=e;
+		String d=super.getDepartment();
+		super.display(d);
+		System.out.println("designation is "+Executive.executive);
+	}
+	
+}
+public class question3 {
+	public static void main(String args[])
+	{
+		Scanner sc=new Scanner(System.in);
+		System.out.println("enter employee name");
+		String name=sc.nextLine();
+		System.out.println("enter employee salary");
+		int sal=sc.nextInt();
+		Employee obj=new Employee();
+		obj.details(name,sal);
+		System.out.println("department of employee");
+		String dept=sc.next();
+		System.out.println("employee is : 1.Manager 2.Executive");
+		int n=sc.nextInt();
+		Manager obj1=new Manager();
+        Executive obj2=new Executive();
+        if(n==1)
+		{
+			obj1.display(dept);
+		}
+		if(n==2)
+		{
+			String e="executive";
+			obj2.display(e);
+		}
+	}
+	}
+

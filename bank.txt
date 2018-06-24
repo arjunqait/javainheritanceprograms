@@ -1,0 +1,178 @@
+package inheritance;
+import java.util.Scanner;
+class Account 
+{
+String customer_name;
+int account_number;
+String type_of_account;
+int balance=1000;
+Scanner sc=new Scanner(System.in);
+  void get_details(String name,String type,int acc_no)
+   {
+	this.customer_name=name;
+	this.type_of_account=type;
+	this.account_number=acc_no;
+	display();
+   } 
+   void display()
+   {
+	 double b;
+	 Account obj=new Savings_account();
+	 Account obj1=new Current_account();
+	 String c;
+    do
+    {
+	if(type_of_account.contains("sav")||type_of_account.contains("SAV"))
+    {
+	System.out.println("enter serial number of your choice");
+	System.out.println("1.withdraw money");
+	System.out.println("2.deposit money");
+	System.out.println("3.view balance");
+	int a=sc.nextInt();
+	switch(a)
+	{
+		case 1 :System.out.println("enter balance to withdraw");
+		        b=sc.nextInt();
+		        ((Savings_account) obj).withdrawl(b);
+		        break;
+		case 2  :System.out.println("enter balance to deposit");
+                b=sc.nextInt();
+                ((Savings_account) obj).update_balance(b);
+                break;
+		case 3  :((Savings_account) obj).display();
+  	}
+    }
+	if(type_of_account.contains("cur")||type_of_account.contains("CUR"))
+	  {
+		System.out.println("enter serial number of your choice");
+		System.out.println("1.withdraw money");
+		System.out.println("2.deposit money");
+		System.out.println("3.view balance");
+		System.out.println("4.issues cheques");
+		int a=sc.nextInt();
+		switch(a)
+		{
+			case 1 :System.out.println("enter balance to withdraw");
+			        b=sc.nextInt();
+			        ((Current_account) obj1).withdraw_bal(b);
+			        break;
+			case 2  :System.out.println("enter balance to deposit");
+	                b=sc.nextInt();
+	                ((Current_account) obj1).update_balance(b);
+	                break;
+			case 3  :((Current_account) obj1).display();
+	                 break;
+			case 4 : ((Current_account) obj1).issue_check();
+	  	}
+	  }
+	System.out.println("do you want to continue");
+	c=sc.nextLine();
+    }while(c.contains("y")||c.contains("Y"));
+   } 
+}
+
+class Savings_account extends Account
+{
+	double compound_int;
+	int withdrawl;
+	double balance=1000;
+	int min_balance=100;
+	void update_balance(double b)
+	{
+		
+		this.balance=this.balance+b;
+		compound_int=this.balance-(this.balance*0.01);
+		this.balance=this.balance-compound_int;
+		display();
+	}
+	void display()
+	{
+		System.out.println("available balance is "+this.balance);
+	}
+	void withdrawl(double b)
+	{
+		this.balance=this.balance-b;
+		if(this.balance<min_balance)
+		{
+			System.out.println("you have insufficient balance");
+			System.out.println("entered value must be within your balance "+this.balance);
+		    super.display();
+	    }
+		else
+		{
+		System.out.println("available balance after withdrawl is "+this.balance);
+		}
+	}
+ }
+
+ class Current_account extends Account
+ {
+	int min_balance=100;
+	static int no_of_check=10;
+	int service_charge=0;
+	double balance=1000;
+	void issue_check()
+	{
+		System.out.println("enter amount to be filled in check");
+		int b=sc.nextInt();
+		this.balance=this.balance-b;
+		if(this.balance<min_balance)
+		{
+			System.out.println("insufficient funds");
+		}
+		else if(no_of_check==0)
+		{    
+		System.out.println("get your new checkbook");
+		}
+		else
+		{
+			no_of_check=no_of_check-1;
+			System.out.println("available checks are "+no_of_check);
+		    System.out.println("available balance is"+this.balance);	
+		}
+		
+	}
+	void update_balance(double b)
+	{
+		this.balance=this.balance+b;
+		display();
+	}
+	
+	void withdraw_bal(double b)
+	{
+		this.balance=this.balance-b;
+		if(this.balance<min_balance)
+		{
+			service_charge=10;
+			this.balance=this.balance-(service_charge);
+			
+		}
+		else
+		{
+		System.out.println("balance after withdrawl is "+this.balance);
+	    }
+		}
+	
+	void display()
+	{
+		System.out.println("available balance is "+this.balance);
+	}
+ }
+
+
+ public class BankAccount
+ {
+ public static void main(String args[])
+ {
+	Scanner sc=new Scanner(System.in);
+	System.out.println("enter your name");
+    String name=sc.nextLine();
+	System.out.println("enter type of account");
+	String type_of_account=sc.nextLine();
+	System.out.println("enter account number");
+	int account_number=sc.nextInt();
+	
+	Account obj=new Account();
+	obj.get_details(name,type_of_account,account_number);
+ }
+ }
